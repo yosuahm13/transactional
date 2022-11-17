@@ -1,0 +1,26 @@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Transaction ID</th>
+          <th scope="col">Time</th>
+          <th scope="col">Type</th>
+          <th scope="col">Source</th>
+          <th scope="col">Target</th>
+          <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= transaction.id %></td>
+              <td><%= transaction.created_at %></td>
+              <td><%= transaction.type_name %></td>
+              <td><%= transaction.source_name %></td>
+              <td><%= transaction.target_name %></td>
+              <td style="text-align: right;"><%= number_with_delimiter(transaction.value, :delimiter => ".") %></td>
+            </tr>
+        <% end %>
+  </tbody>
+
+</table>

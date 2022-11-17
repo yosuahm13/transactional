@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-1">Account</div>
+    <div class="col-sm-6">: <%= @wallet.type_with_name %></div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Transaction ID</th>
+          <th scope="col">Time</th>
+          <th scope="col">Description</th>
+          <th scope="col">Credit</th>
+          <th scope="col">Debit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= transaction.id %></td>
+              <td><%= transaction.created_at %></td>
+              <td><%= transaction.type_name == "Transfer" ? "#{transaction.type_name} from #{transaction.source_name} to #{transaction.target_name}" : transaction.type_name %></td>
+              <td><%= transaction.target_id == params[:id].to_i ? transaction.value : nil %></td>
+              <td><%= transaction.source_id == params[:id].to_i ? transaction.value : nil %></td>
+            </tr>
+        <% end %>
+  </tbody>
+
+</table>
+
+<div class="d-grid gap-2 d-md-block">
+    <%= link_to "Back", wallets_path(:type => @wallet.type), class: "btn btn-danger" %>
+</div>

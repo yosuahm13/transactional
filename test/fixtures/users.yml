@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+almighty:
+  id: 1
+  name: Almighty User
+  type: User
+
+one:
+  id: 2
+  name: John Doe
+  type: User

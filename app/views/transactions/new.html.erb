@@ -1,0 +1,59 @@
+<%
+    back_path = users_path
+    if @wallet.type == 'Team'
+        back_path = teams_path
+    elsif @wallet.type == 'Stock'
+        back_path = stocks_path
+    end
+%>
+<%= form_with model: @transaction, method: :post, url: transaction_create_path(:wallet_id => params[:wallet_id], :type_id => params[:type_id]), data: { turbo: false } do |form| %>
+
+    <% if @transaction_type.id == 2 %>
+        <div class="mb-3 row">
+            <%= form.label :source, "Source", class: "col-sm-2 col-form-label" %>
+
+            <div class="col-sm-4">
+                <%= form.text_field :name, value: @wallet.type_with_name, class: "form-control", readonly: true %>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <%= form.label :target_id, "Target", class: "col-sm-2 col-form-label" %>
+
+            <div class="col-sm-4">
+                <%= form.collection_select :target_id, @wallets, :id, :type_with_name, {}, {:class => "form-select"} %>
+            </div>
+        </div>
+    <% else %>
+        <div class="mb-3 row">
+            <%= form.label :account, "Account", class: "col-sm-2 col-form-label" %>
+
+            <div class="col-sm-4">
+                <%= form.text_field :account_name, value: @wallet.type_with_name, class: "form-control", readonly: true %>
+            </div>
+        </div>
+    <% end %>
+
+    <div class="mb-3 row">
+        <%= form.label :transaction_type, "Transaction Type", class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-2">
+            <%= form.label :transaction_type_name, @transaction_type.name, class: "form-control" %>
+        </div>
+        <%= form.hidden_field :transaction_types_id %>
+    </div>
+
+    <div class="mb-3 row">
+        <%= form.label :value, "Value", class: "col-sm-2 col-form-label" %>
+
+        <div class="col-sm-4">
+            <%= form.text_field :value, class: "form-control", type: "number", required: true %>
+        </div>
+    </div>
+
+
+    <div class="d-grid gap-2 d-md-block">
+        <%= link_to "Back", back_path, class: "btn btn-danger" %>
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+    
+<% end %>

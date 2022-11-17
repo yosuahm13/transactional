@@ -1,0 +1,27 @@
+<%= form_with model: @wallet, url: wallets_path, method: :post do |form| %>
+    <%= form.hidden_field :type %>
+
+    <div class="mb-3 row">
+        <%= form.label :type_label, "Type", class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-2">
+            <%= form.label :type_value, value: @wallet.type, class: "form-control" %>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <%= form.label :name, "Name", class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-4">
+            <%= form.text_field :name, class: "form-control" %>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <%= form.label :init_deposit, "Init deposit", class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-2">
+            <%= form.text_field :init_deposit, value: @init_deposit, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-block">
+        <%= link_to "Back", wallets_path(:type => @wallet.type), class: "btn btn-danger" %>
+        <%= form.submit "Save", class: "btn btn-primary" %>
+    </div>
+<% end %>

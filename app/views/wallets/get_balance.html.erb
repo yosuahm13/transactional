@@ -1,0 +1,11 @@
+<div class="mb-3 row">
+    <div class="col-sm-1">Account</div>
+    <div class="col-sm-6">: <%= @wallet.type_with_name %></div>
+</div>
+<div class="mb-3 row">
+    <div class="col-sm-1">Balance</div>
+    <div class="col-sm-3">: <%= @balance %></div>
+</div>
+<div class="d-grid gap-2 d-md-block">
+    <%= link_to "Back", wallets_path(:type => @wallet.type), class: "btn btn-danger" %>
+</div>

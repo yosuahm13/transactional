@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   name: John Doe
+#   type: User
+#   created_at: Time.now
+#   updated_at: Time.now
+
+# two:
+#   name: Karina
+#   type: User
+#   created_at: Time.now
+#   updated_at: Time.now
